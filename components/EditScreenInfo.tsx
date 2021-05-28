@@ -8,7 +8,7 @@ import { Text, View } from './Themed';
 
 export default function EditScreenInfo({ path }: { path: string }) {
   var [count, setCount] = useState(0)
-  var [text, setText] = useState("Rajan Maggy")
+  var [text, setText] = useState("Rajan Maggy & Jazzy Saggy")
   const ONE_SECOND_IN_MS = 1000;
 
   const PATTERN = [
