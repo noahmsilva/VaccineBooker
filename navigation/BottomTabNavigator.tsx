@@ -5,7 +5,7 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
@@ -13,6 +13,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import HealthCardInfo from '../screens/HealthCardInfo';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -49,7 +50,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabOneStack = createNativeStackNavigator<TabOneParamList>();
 
 function TabOneNavigator() {
   return (
@@ -63,7 +64,7 @@ function TabOneNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabTwoStack = createNativeStackNavigator<TabTwoParamList>();
 
 function TabTwoNavigator() {
   return (
@@ -71,8 +72,13 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Health Settings', headerLargeTitle: true}}
       />
+      <TabTwoStack.Screen
+      name="HealthCardInfo"
+      component={HealthCardInfo}
+      options={{ headerTitle: 'My Health Card'}} />
+
     </TabTwoStack.Navigator>
   );
 }
