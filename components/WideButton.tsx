@@ -3,7 +3,7 @@ import { TouchableOpacity, GestureResponderEvent, Text, StyleSheet, Platform, Pl
 
 
 const WideButton = ({ onPress, title }: { onPress: (event: GestureResponderEvent) => void, title: string }) => {
-    
+
     const styles = StyleSheet.create({
         touchable: {
             padding: 20,
