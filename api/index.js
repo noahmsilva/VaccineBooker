@@ -40,7 +40,7 @@ app.post('/getPaitent', async (req, res) => {
     }
 
 
-    const paitent = await Paitent.findOne(req.body)
+    const paitent = await Paitent.findOne(req.body).collation({locale: "en_US", strength: 2})
     if (!paitent) res.status(404).send()
     else res.status(200).send(paitent)
 })
