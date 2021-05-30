@@ -1,9 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors'
-import assert from 'assert';
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const assert = require('assert')
 
-import Paitent from './models/Paitent.js'
+const Paitent = require('./models/Paitent.js')
 
 // Connect to database
 mongoose.connect('mongodb://localhost:27017/VaccineBooker', { useNewUrlParser: true, useUnifiedTopology: true })

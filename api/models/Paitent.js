@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const Paitent = mongoose.model('Paitent', {
     
@@ -8,4 +8,4 @@ const Paitent = mongoose.model('Paitent', {
 
 })
 
-export default Paitent
+module.exports = Paitent
