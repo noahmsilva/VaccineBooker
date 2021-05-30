@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors'
+import assert from 'assert';
 
 import Paitent from './models/Paitent.js'
 
@@ -15,15 +16,33 @@ app.use(cors())
 
 
 // Define http requests
+
 app.post('/setPaitent', async (req, res) => {
+
     const paitent = new Paitent(req.body)
     try {
         await paitent.save()
     } catch (err) {
         res.status(500).send(err)
-    } 
+    }
 
     res.status(200).send()
+})
+
+app.post('/getPaitent', async (req, res) => {
+
+    try {
+        assert('firstName' in req.body)
+        assert('lastName' in req.body)
+        assert('healthId' in req.body)
+    } catch {
+        res.status(400).send('Missing parameters')
+    }
+
+
+    const paitent = await Paitent.findOne(req.body)
+    if (!paitent) res.status(404).send()
+    else res.status(200).send(paitent)
 })
 
 // Run server
