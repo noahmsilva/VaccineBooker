@@ -1,7 +1,9 @@
 import * as React from "react";
-import { KeyboardAvoidingView, TextInput, StyleSheet, Platform, PlatformColor, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { KeyboardAvoidingView, TextInput, StyleSheet, Platform, PlatformColor, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import { Text, View } from "../components/Themed";
 import WideButton from "../components/WideButton";
+
+import API from "../hooks/API";
 
 export default function HealthCardInfo({ navigation }: { navigation: any }) {
 
@@ -41,7 +43,15 @@ export default function HealthCardInfo({ navigation }: { navigation: any }) {
                     
                     
                     )}
-                    <WideButton title="Submit" onPress={() => console.log(form)} />
+                    <WideButton title="Submit" onPress={
+                        async () => {
+                            const response = await API.getPaitent(undefined, form)
+                            if (response.status === 404) Alert.alert('Error', 'Could not find paitent information')
+                            else {
+                                const item =  await response.json()
+                                Alert.alert('Paitent Information', `${item.firstName} ${item.lastName}\n\nHealth ID: ${item.healthId}\nInternal ID: ${item._id}`)
+                            }
+                            }} />
             </View>
         </TouchableWithoutFeedback>
 
