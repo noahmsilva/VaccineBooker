@@ -5,24 +5,43 @@ import { StyleSheet, Button, Alert } from "react-native";
 
 import { Text, View } from "../components/Themed";
 import WideButton from "../components/WideButton";
+import WideSelect from "../components/WideSelect";
 
 const Stack = createNativeStackNavigator();
 
-const Index = ({ navigation }: { navigation: any }) => (
-  <View style={styles.container}>
-    <Text>Welcome to the COVID-19 Booking Tool</Text>
+const AGE_GROUPS = [
+  {title: "75+", description: "Priority group #1", id: 0},
+  {title: "65+", description: "Priority group #2", id: 1},
+  {title: "55+", description: "Priority group #3", id: 2},
+  {title: "45+", description: "Priority group #4", id: 3},
+  {title: "18+", description: "All remaining adults", id: 4},
+]
 
-    <WideButton title="Continue" onPress={() => navigation.navigate("HealthID")} />
-  </View>
-);
-
-const HealthID = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Please enter your Health ID</Text>
-  </View>
-);
 
 export default function BookAppointment({ navigation }: { navigation: any }) {
+
+  const [selected, setSelected] = React.useState<number>()
+  
+  const Index = ({ navigation }: { navigation: any }) => (
+    <View style={styles.container}>
+      <Text>Welcome to the COVID-19 Booking Tool</Text>
+  
+      <WideButton title="Continue" onPress={() => navigation.navigate("AgeGroup")} />
+    </View>
+  );
+  
+  const AgeGroup = () => (
+    <View style={styles.container}>
+      <Text>Select your age group from the list below</Text>
+      {AGE_GROUPS.map(item => 
+        // FIXME component re-rendering too quick so animation cuts off, fix up with state changes
+      <WideSelect key={item.id} onPress={() => setSelected(item.id)} title={item.title} description={item.description} selected={selected !== undefined && selected === item.id} />
+        )}
+  
+    </View>
+  );
+
+
   enableScreens();
 
   return (
@@ -53,9 +72,9 @@ export default function BookAppointment({ navigation }: { navigation: any }) {
         options={{ title: "Book Appointment", headerRight: undefined }}
       />
       <Stack.Screen
-        name="HealthID"
-        component={HealthID}
-        options={{ title: "Health Card" }}
+        name="AgeGroup"
+        component={AgeGroup}
+        options={{ title: "Age Group" }}
       />
     </Stack.Navigator>
   );
@@ -66,10 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,

@@ -5,20 +5,23 @@ const WideSelect = ({ onPress, title, description, selected }: { onPress: (event
     const styles = StyleSheet.create({
         touchable: {
             padding: 20,
-            width: '70%',
+            width: '85%',
             marginVertical: 5,
             borderRadius: 15,
+            borderWidth: 1,
+            borderStyle: 'solid',
             ...Platform.select({
                 ios: {
-                    backgroundColor: PlatformColor('secondarySystemFill'),
+                    borderColor: PlatformColor('tertiarySystemFill'),
+                    backgroundColor: PlatformColor('tertiarySystemFill'),
                 },
                 android: {
+                    borderColor: PlatformColor('@android:color/holo_blue_bright'),
                     backgroundColor: PlatformColor('@android:color/holo_blue_bright'),
                 }
             })
         },
         touchableSelected: {
-            borderWidth: 1,
             ...Platform.select({
                 ios: {
                     borderColor: PlatformColor('systemBlue'),
@@ -27,7 +30,6 @@ const WideSelect = ({ onPress, title, description, selected }: { onPress: (event
                     borderColor: PlatformColor('@android:color/holo_blue_bright')
                 }
             }),
-            borderStyle: 'solid'
         },
         title: {
             
@@ -50,7 +52,7 @@ const WideSelect = ({ onPress, title, description, selected }: { onPress: (event
     })
 
 
-    return <TouchableOpacity style={[styles.touchable, selected && styles.touchableSelected]} activeOpacity={0.8} onPress={onPress}>
+    return <TouchableOpacity style={[styles.touchable, selected && styles.touchableSelected]} onPress={onPress}>
         <Text style={[styles.text, styles.title]}>{title}</Text>
         {description && <Text style={[styles.text, styles.description]}>{description}</Text>}
     </TouchableOpacity>
