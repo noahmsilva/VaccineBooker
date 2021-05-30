@@ -4,13 +4,15 @@ import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import { StyleSheet, Button, Alert } from "react-native";
 
 import { Text, View } from "../components/Themed";
+import WideButton from "../components/WideButton";
 
 const Stack = createNativeStackNavigator();
 
 const Index = ({ navigation }: { navigation: any }) => (
   <View style={styles.container}>
-    <Text style={styles.title}>Book Appointment Screen</Text>
-    <Button title="Next" onPress={() => navigation.navigate("HealthID")} />
+    <Text>Welcome to the COVID-19 Booking Tool</Text>
+
+    <WideButton title="Continue" onPress={() => navigation.navigate("HealthID")} />
   </View>
 );
 
