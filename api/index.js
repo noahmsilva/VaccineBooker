@@ -62,7 +62,7 @@ app.post('/getPaitentCode', async (req, res) => {
     const paitent = await Paitent.findOne(req.body).collation({ locale: "en_US", strength: 2 })
     if (!paitent) res.status(404).send()
     else {
-        const token = jwt.sign(paitent.toObject(), secret, { expiresIn: '5 min' })
+        const token = jwt.sign({id: paitent.toObject()['_id']}, secret, { expiresIn: '5 min' })
         res.status(200).send({ token })
     }
 })
@@ -80,9 +80,7 @@ app.post('/getPaitentFromCode', async (req, res) => {
         if (err) res.status(403).send()
         else { 
 
-            const paitentDef = (({_id, firstName, lastName, healthId}) => ({_id, firstName, lastName, healthId}))(item)
-            console.log(paitentDef)
-            const paitent = await Paitent.findOne(paitentDef).collation({locale: "en_US", strength: 2})
+            const paitent = await Paitent.findById(item.id).collation({locale: "en_US", strength: 2})
             if (!paitent) res.status(404).send()
             else res.status(200).send(paitent)
 
