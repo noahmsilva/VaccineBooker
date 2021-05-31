@@ -31,7 +31,9 @@ const getFromAPIFunc = (request: string) => {
 
 const REQUESTS = [
     'setPaitent',
-    'getPaitent'
+    'getPaitent',
+    'getPaitentCode',
+    'getPaitentFromCode'
 ]
 
 var calls: {[key: string]: Function} = {}

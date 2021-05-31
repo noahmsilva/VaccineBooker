@@ -52,6 +52,16 @@ export default function HealthCardInfo({ navigation }: { navigation: any }) {
                                 Alert.alert('Paitent Information', `${item.firstName} ${item.lastName}\n\nHealth ID: ${item.healthId}\nInternal ID: ${item._id}`)
                             }
                             }} />
+
+                    <WideButton title="Get QR Code" onPress={
+                        async () => {
+                            const response = await API.getPaitentCode(undefined, form)
+                            if (response.status === 404) Alert.alert('Error', 'Could not find paitent information')
+                            else {
+                                const item =  await response.json()
+                                navigation.navigate('HealthCode', item)
+                            }
+                            }} />
             </View>
         </TouchableWithoutFeedback>
 

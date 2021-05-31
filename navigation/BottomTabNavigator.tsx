@@ -14,6 +14,7 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 import HealthCardInfo from '../screens/HealthCardInfo';
+import HealthCode from '../screens/HealthCode';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -79,6 +80,10 @@ function TabTwoNavigator() {
       component={HealthCardInfo}
       options={{ headerTitle: 'My Health Card'}} />
 
+      <TabTwoStack.Screen
+      name="HealthCode"
+      component={HealthCode}
+      options={{ headerTitle: 'Share Health Code'}} />
     </TabTwoStack.Navigator>
   );
 }
