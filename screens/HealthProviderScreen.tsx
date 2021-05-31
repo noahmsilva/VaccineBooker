@@ -1,28 +1,14 @@
 import * as React from 'react';
-import { StyleSheet, Button, ScrollView, TouchableOpacity, Platform, PlatformColor } from 'react-native';
-import { AntDesign, Entypo } from '@expo/vector-icons';
+import { StyleSheet, Button, ScrollView, TouchableOpacity, Platform, PlatformColor, FlatList, GestureResponderEvent } from 'react-native';
+import { AntDesign, Entypo, Ionicons } from '@expo/vector-icons';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function HealthProviderScreen({ navigation }: { navigation: any }) {
-    return (
-        <ScrollView>
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.listButton} onPress={() => console.log('clicked')}>
-                    <View style={styles.listButtonView}>
-                        <AntDesign name="scan1" size={24} style={styles.listIcon} />
-                        <Text>Scan Paitent Health Card</Text>
-                        <Entypo name="chevron-small-right" size={24} color="white" style={styles.listChevron}/>
-                    </View>
-                </TouchableOpacity>
-
-            </View>
-        </ScrollView>
-    );
-}
 
 const styles = StyleSheet.create({
+    list: {
+        width: '90%',
+    },
     container: {
         paddingVertical: 30,
         flex: 1,
@@ -39,7 +25,8 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     listButton: {
-        width: '90%',
+        width: '100%',
+        marginBottom: 5,
     },
     listButtonView: {
         flexDirection: 'row',
@@ -78,4 +65,57 @@ const styles = StyleSheet.create({
         }),
     }
 });
+
+
+
+const LIST_ITEMS = [
+    {
+        id: '0',
+        name: 'Scan Paitent Health Card',
+        icon: () => <AntDesign name="scan1" size={24} style={styles.listIcon} />,
+        onPress: () => console.log('clicked')
+    },
+    {
+        id: '1',
+        name: 'Edit Paitent Details',
+        icon: () => <AntDesign name="edit" size={24} style={styles.listIcon} />,
+        onPress: () => console.log('clicked')
+    },
+    {
+        id: '2',
+        name: 'Submit New Paitent Information',
+        icon: () => <Ionicons name="person-add-outline" size={24} style={styles.listIcon} />,
+        onPress: () => console.log('clicked')
+    }
+]
+
+const ListButton = ({ name, Icon, onPress }: { name: string, Icon: any, onPress: (event: GestureResponderEvent) => void }) => <TouchableOpacity style={styles.listButton} onPress={onPress}>
+    <View style={styles.listButtonView}>
+
+        <Icon />
+        <Text>{name}</Text>
+        <Entypo name="chevron-right" size={24} style={styles.listChevron} />
+    </View>
+
+</TouchableOpacity>
+
+
+export default function HealthProviderScreen({ navigation }: { navigation: any }) {
+
+    const renderItem = ({ item }: { item: any }) => <ListButton name={item.name} Icon={item.icon} onPress={item.onPress} />
+
+    return (
+        <ScrollView>
+            <View style={styles.container}>
+
+                <FlatList
+                    style={styles.list}
+                    data={LIST_ITEMS}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id} />
+
+            </View>
+        </ScrollView>
+    );
+}
 
