@@ -11,6 +11,7 @@ export default function TabTwoScreen({ navigation }: { navigation: any}) {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
       <Button onPress={() => navigation.navigate('HealthCardInfo')} title="View Health Card Information" />
+      <Button onPress={() => navigation.navigate('ReadHealthCode')} title="Scan Paitent Health Code" />
     </View>
   );
 }

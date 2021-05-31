@@ -10,10 +10,12 @@ export default function HealthCode({ route }: { navigation: any, route: any }) {
 
 
     return <View style={styles.container}>
+        <View style={styles.border}>
             <QRCode
-            size={300}
-      value={route.params.token}
-    />
+                size={300}
+                value={route.params.token}
+            />
+        </View>
     </View>
 }
 
@@ -24,4 +26,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    border: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 330,
+        height: 330,
+        backgroundColor: 'white'
+    }
 })

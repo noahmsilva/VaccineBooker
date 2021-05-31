@@ -15,6 +15,8 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 import HealthCardInfo from '../screens/HealthCardInfo';
 import HealthCode from '../screens/HealthCode';
+import ReadHealthCode from '../screens/ReadHealthCode';
+import PaitentInfoFromCode from '../screens/PaitentInfoFromCode';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -84,6 +86,17 @@ function TabTwoNavigator() {
       name="HealthCode"
       component={HealthCode}
       options={{ headerTitle: 'Share Health Code'}} />
+
+      <TabTwoStack.Screen
+      name="ReadHealthCode"
+      component={ReadHealthCode}
+      options={{ headerTitle: 'Scan Paitent Information'}} />
+      
+      <TabTwoStack.Screen
+      name="PaitentInfoFromCode"
+      component={PaitentInfoFromCode}
+      options={{ headerTitle: 'Paitent'}} />
+    
     </TabTwoStack.Navigator>
   );
 }
