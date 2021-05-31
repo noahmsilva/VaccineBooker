@@ -12,6 +12,7 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
+  HealthProvider: undefined;
 };
 
 export type TabOneParamList = {
@@ -25,3 +26,7 @@ export type TabTwoParamList = {
   ReadHealthCode: undefined;
   PaitentInfoFromCode: undefined;
 };
+
+export type HealthProviderParamList = {
+  HealthProviderScreen: undefined;
+}

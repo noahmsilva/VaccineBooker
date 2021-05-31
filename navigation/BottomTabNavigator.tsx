@@ -12,11 +12,12 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, HealthProviderParamList } from '../types';
 import HealthCardInfo from '../screens/HealthCardInfo';
 import HealthCode from '../screens/HealthCode';
 import ReadHealthCode from '../screens/ReadHealthCode';
 import PaitentInfoFromCode from '../screens/PaitentInfoFromCode';
+import HealthProviderScreen from '../screens/HealthProviderScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -37,6 +38,14 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+
+      <BottomTab.Screen
+        name="HealthProvider"
+        component={HealthProviderNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -75,7 +84,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Health Settings', headerLargeTitle: true}}
+        options={{ headerTitle: 'My Health', headerLargeTitle: true}}
       />
       <TabTwoStack.Screen
       name="HealthCardInfo"
@@ -99,4 +108,15 @@ function TabTwoNavigator() {
     
     </TabTwoStack.Navigator>
   );
+}
+
+const HealthProviderStack = createNativeStackNavigator<HealthProviderParamList>()
+
+function HealthProviderNavigator() {
+  return <HealthProviderStack.Navigator>
+    <HealthProviderStack.Screen
+    name="HealthProviderScreen"
+    component={HealthProviderScreen}
+    options={{ headerTitle: 'Health Care Provider', headerLargeTitle: true}} />
+  </HealthProviderStack.Navigator>
 }

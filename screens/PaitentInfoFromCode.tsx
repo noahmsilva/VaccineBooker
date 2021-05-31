@@ -25,7 +25,7 @@ export default function PaitentInfoFromCode({ route }: { navigation: any, route:
             </Text>
     </View>
 
-    if (paitentInfo) {}return <View style={styles.container}>
+    return <View style={styles.container}>
         <Text style={styles.firstName}>{paitentInfo.firstName}</Text>
         <Text style={styles.lastName}>{paitentInfo.lastName}</Text>
 

@@ -1,13 +1,9 @@
 import * as React from "react";
-import { KeyboardAvoidingView, TextInput, StyleSheet, Platform, PlatformColor, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
-import { Text, View } from "../components/Themed";
+import { StyleSheet } from "react-native";
+import { View } from "../components/Themed";
 import QRCode from "react-native-qrcode-svg"
-import WideButton from "../components/WideButton";
-
-import API from "../hooks/API";
 
 export default function HealthCode({ route }: { navigation: any, route: any }) {
-
 
     return <View style={styles.container}>
         <View style={styles.border}>
